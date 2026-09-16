@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'minipjt01.board'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Oracle Database 21c (21.3.0.0.0) XE 대상 - 서버 버전에 맞춘 ojdbc8 21.x 드라이버
+    // (JDK 8 이상에서 모두 사용 가능하며, 21c 서버와 가장 검증된 조합)
+    implementation 'com.oracle.database.jdbc:ojdbc8:21.9.0.0'
+
+    // (선택) 한글 등 NLS(National Language Support) 오류 메시지가 필요하면 추가
+    // implementation 'com.oracle.database.nls:orai18n:21.9.0.0'
+
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
